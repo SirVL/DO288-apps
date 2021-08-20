@@ -6,7 +6,7 @@ items:
   kind: Service
   metadata:
     annotations:
-      fabric8.io/git-commit: 2c8dcd8dd9a8ec2c95afa13d8848d36f64d9ed3d
+      fabric8.io/git-commit: 73cc3f590e333859fc766837b1ce97936920f498
       fabric8.io/git-branch: micro-config
       fabric8.io/git-url: https://github.com/SirVL/DO288-apps.git
       prometheus.io/port: "9779"
@@ -28,11 +28,22 @@ items:
       app: hello
       provider: fabric8
       group: com.redhat.training.openshift
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    labels:
+      app: hello
+      provider: fabric8
+      version: "1.0"
+      group: com.redhat.training.openshift
+    name: env-config
+  data:
+    APP_MSG: sample external configuration
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
     annotations:
-      fabric8.io/git-commit: 2c8dcd8dd9a8ec2c95afa13d8848d36f64d9ed3d
+      fabric8.io/git-commit: 73cc3f590e333859fc766837b1ce97936920f498
       fabric8.io/git-branch: micro-config
       fabric8.io/git-url: https://github.com/SirVL/DO288-apps.git
     labels:
@@ -52,7 +63,7 @@ items:
     template:
       metadata:
         annotations:
-          fabric8.io/git-commit: 2c8dcd8dd9a8ec2c95afa13d8848d36f64d9ed3d
+          fabric8.io/git-commit: 73cc3f590e333859fc766837b1ce97936920f498
           fabric8.io/git-branch: micro-config
           fabric8.io/git-url: https://github.com/SirVL/DO288-apps.git
         labels:
@@ -67,6 +78,9 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
+          envFrom:
+          - configMapRef:
+              name: env-config
           image: hello:1.0
           imagePullPolicy: IfNotPresent
           name: thorntail-v2

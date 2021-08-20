@@ -10,6 +10,6 @@ items:
     tags:
     - from:
         kind: ImageStreamImage
-        name: hello@sha256:c57e2414c13bc92fe1825840bbdd88b43ed80fa7f763b1733685c3d62fb40e25
+        name: hello@sha256:305361aa95bd58e548afeed8a9d0b461917dbda0a2a17c6ba39401209d79cdad
         namespace: etkmcf-micro-java
       name: "1.0"
