@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: hello
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: hello@sha256:c57e2414c13bc92fe1825840bbdd88b43ed80fa7f763b1733685c3d62fb40e25
+        namespace: etkmcf-micro-java
+      name: "1.0"

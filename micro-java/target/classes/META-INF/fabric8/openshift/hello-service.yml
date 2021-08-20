@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    fabric8.io/git-commit: 2c8dcd8dd9a8ec2c95afa13d8848d36f64d9ed3d
+    fabric8.io/git-branch: micro-config
+    fabric8.io/git-url: https://github.com/SirVL/DO288-apps.git
+    prometheus.io/port: "9779"
+    prometheus.io/scrape: "true"
+  labels:
+    expose: "true"
+    app: hello
+    provider: fabric8
+    version: "1.0"
+    group: com.redhat.training.openshift
+  name: hello
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: hello
+    provider: fabric8
+    group: com.redhat.training.openshift
